@@ -6,8 +6,54 @@
 // Canvas setup
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = 600;
-canvas.height = 700;
+
+// Set initial canvas size
+let canvasWidth = 600;
+let canvasHeight = 700;
+
+// Function to resize canvas based on container
+function resizeCanvas() {
+    const container = document.querySelector('.game-container');
+    const maxWidth = 600;
+    const maxHeight = 700;
+    const aspectRatio = maxHeight / maxWidth;
+    
+    // Get container width
+    const containerWidth = container.clientWidth - 40; // Account for padding
+    
+    // Calculate new dimensions
+    if (containerWidth < maxWidth) {
+        canvasWidth = containerWidth;
+        canvasHeight = containerWidth * aspectRatio;
+    } else {
+        canvasWidth = maxWidth;
+        canvasHeight = maxHeight;
+    }
+    
+    // Set canvas dimensions
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    
+    // Update game constants based on new size
+    const scale = canvasWidth / 600;
+    updateGameScale(scale);
+}
+
+// Update game constants when canvas is resized
+function updateGameScale(scale) {
+    // This will be called after canvas resize
+    // Game constants will be recalculated in init()
+}
+
+// Call resize on load and orientation change
+window.addEventListener('load', resizeCanvas);
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('orientationchange', () => {
+    setTimeout(resizeCanvas, 100);
+});
+
+// Initial resize
+resizeCanvas();
 
 // Game state
 const gameState = {

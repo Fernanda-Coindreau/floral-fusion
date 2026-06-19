@@ -23,6 +23,9 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border: 3px solid rgba(255, 255, 255, 0.3);
+    max-width: 640px;
+    width: 95%;
+    margin: 0 auto;
 }
 
 /* Header styling */
@@ -81,6 +84,9 @@ body {
         0 10px 30px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     background: linear-gradient(180deg, #B4D7E8 0%, #A8D5BA 40%, #C9A66B 100%);
+    width: 100%;
+    height: auto;
+    max-width: 600px;
 }
 
 /* Hint text */
@@ -398,36 +404,121 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .title {
-        font-size: 2em;
-    }
-    
-    .stats {
-        gap: 20px;
-    }
-    
-    .stat-item {
-        padding: 8px 15px;
-    }
-    
-    .modal-content {
-        padding: 30px 40px;
-    }
-    
-    .evolution-chain {
-        gap: 10px;
-    }
-    
-    .evo-item {
-        min-width: 60px;
+    body {
         padding: 10px;
     }
     
+    .game-container {
+        width: 100%;
+        padding: 15px;
+        border-radius: 20px;
+    }
+    
+    .title {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+    
+    .stats {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+    
+    .stat-label {
+        font-size: 1em;
+    }
+    
+    .stat-value {
+        font-size: 1.1em;
+    }
+    
+    .hint {
+        font-size: 0.9em;
+        padding: 8px;
+        margin-top: 10px;
+    }
+    
+    .sequence-btn {
+        font-size: 0.9em;
+        padding: 10px 20px;
+    }
+    
+    .sound-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .volume-control {
+        top: 70px;
+        right: 10px;
+        min-width: 150px;
+        padding: 10px 15px;
+    }
+    
+    .modal-content {
+        padding: 20px 30px;
+        width: 90%;
+        max-width: 400px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.8em;
+    }
+    
+    .evolution-chain {
+        gap: 8px;
+    }
+    
+    .evo-item {
+        min-width: 50px;
+        padding: 8px;
+    }
+    
     .evo-emoji {
-        font-size: 2em;
+        font-size: 1.5em;
+    }
+    
+    .evo-name {
+        font-size: 0.75em;
     }
     
     .evo-arrow {
-        font-size: 1.5em;
+        font-size: 1.2em;
+    }
+    
+    .difficulty-btn {
+        font-size: 1.1em;
+        padding: 15px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.2em;
+    }
+    
+    .stats {
+        gap: 5px;
+    }
+    
+    .stat-item {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+    
+    .stat-label {
+        font-size: 0.9em;
+    }
+    
+    .stat-value {
+        font-size: 1em;
     }
 }
