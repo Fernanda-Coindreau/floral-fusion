@@ -55,6 +55,12 @@ window.addEventListener('orientationchange', () => {
 // Initial resize
 resizeCanvas();
 
+// Detect if user is on mobile device
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+// Mobile size adjustment factor
+const mobileSizeMultiplier = isMobile ? 0.75 : 1.0; // 25% smaller on mobile
+
 // Game state
 const gameState = {
     score: 0,
@@ -147,18 +153,25 @@ function initSounds() {
 }
 
 // Creature definitions - 10 levels of adorable evolution!
-const creatures = [
-    { level: 1, emoji: '🐌', name: 'Snail', size: 20 },
-    { level: 2, emoji: '🦋', name: 'Butterfly', size: 25 },
-    { level: 3, emoji: '🐰', name: 'Bunny', size: 30 },
-    { level: 4, emoji: '🐱', name: 'Kitty', size: 35 },
-    { level: 5, emoji: '🐶', name: 'Puppy', size: 40 },
-    { level: 6, emoji: '🦊', name: 'Fox', size: 45 },
-    { level: 7, emoji: '🐻', name: 'Bear', size: 50 },
-    { level: 8, emoji: '🦁', name: 'Lion', size: 55 },
-    { level: 9, emoji: '🐯', name: 'Tiger', size: 60 },
-    { level: 10, emoji: '🦄', name: 'Unicorn', size: 65 }
+// Base sizes (will be adjusted for mobile)
+const creaturesBase = [
+    { level: 1, emoji: '🐌', name: 'Snail', baseSize: 20 },
+    { level: 2, emoji: '🦋', name: 'Butterfly', baseSize: 25 },
+    { level: 3, emoji: '🐰', name: 'Bunny', baseSize: 30 },
+    { level: 4, emoji: '🐱', name: 'Kitty', baseSize: 35 },
+    { level: 5, emoji: '🐶', name: 'Puppy', baseSize: 40 },
+    { level: 6, emoji: '🦊', name: 'Fox', baseSize: 45 },
+    { level: 7, emoji: '🐻', name: 'Bear', baseSize: 50 },
+    { level: 8, emoji: '🦁', name: 'Lion', baseSize: 55 },
+    { level: 9, emoji: '🐯', name: 'Tiger', baseSize: 60 },
+    { level: 10, emoji: '🦄', name: 'Unicorn', baseSize: 65 }
 ];
+
+// Apply mobile size adjustment
+const creatures = creaturesBase.map(creature => ({
+    ...creature,
+    size: Math.round(creature.baseSize * mobileSizeMultiplier)
+}));
 
 // Physics constants (adjusted by difficulty)
 let GRAVITY = 0.8;
