@@ -181,6 +181,9 @@ const FLOOR_Y = canvas.height - 50;
 const WALL_LEFT = 100;
 const WALL_RIGHT = canvas.width - 100;
 
+// Game Over limit line (15% from top of canvas)
+const GAME_OVER_LIMIT_Y = canvas.height * 0.15;
+
 // Difficulty settings
 const difficultySettings = {
     easy: {
@@ -324,6 +327,9 @@ function gameLoop() {
 function drawForest() {
     // Sky gradient (already in CSS, but add some details)
     
+    // Draw Game Over limit line
+    drawGameOverLine();
+    
     // Draw trees on the sides
     drawTree(30, FLOOR_Y - 150, 40, 150);
     drawTree(canvas.width - 70, FLOOR_Y - 180, 50, 180);
@@ -405,6 +411,35 @@ function drawFlower(x, y, color) {
     ctx.beginPath();
     ctx.arc(x, y, 3, 0, Math.PI * 2);
     ctx.fill();
+}
+
+function drawGameOverLine() {
+    // Calculate responsive position (15% from top)
+    const lineY = canvas.height * 0.15;
+    
+    // Save current context state
+    ctx.save();
+    
+    // Set line style
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)'; // Subtle white
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 5]); // Dashed pattern: 10px dash, 5px gap
+    
+    // Draw the line across the play area
+    ctx.beginPath();
+    ctx.moveTo(WALL_LEFT, lineY);
+    ctx.lineTo(WALL_RIGHT, lineY);
+    ctx.stroke();
+    
+    // Add a subtle text label
+    ctx.setLineDash([]); // Reset to solid line for text
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('⚠️ Danger Zone', canvas.width / 2, lineY - 8);
+    
+    // Restore context state
+    ctx.restore();
 }
 
 function drawAnimal(animal) {
