@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌲 Animal Forest - Merge Game ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Difficulty Selection Modal -->
+    <div id="difficultyModal" class="modal">
+        <div class="modal-content">
+            <h2>🌟 Choose Difficulty 🌟</h2>
+            <p style="color: #fff; margin: 20px 0;">Select your challenge level!</p>
+            <button class="difficulty-btn easy-btn" data-difficulty="easy">🌸 Easy Mode</button>
+            <button class="difficulty-btn medium-btn" data-difficulty="medium">🌺 Medium Mode</button>
+            <button class="difficulty-btn hard-btn" data-difficulty="hard">🔥 Hard Mode</button>
+        </div>
+    </div>
+
+    <!-- Sound Toggle Button -->
+    <button id="soundToggle" class="sound-toggle">🔊</button>
+    
+    <!-- Volume Control -->
+    <div id="volumeControl" class="volume-control hidden">
+        <label for="volumeSlider">🔊 Volumen:</label>
+        <input type="range" id="volumeSlider" min="0" max="100" value="60">
+        <span id="volumeValue">60%</span>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundMusic" loop>
+        <source src="Sound Effects/Merge.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="mergeSound">
+        <source src="Sound Effects/Background.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Game Container -->
+    <div class="game-container">
+        <!-- Header with Score and Level -->
+        <div class="header">
+            <h1 class="title">✨ ANIMAL FOREST ✨</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">💖 Score:</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🌟 Level:</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🦄 Goal:</span>
+                    <span class="stat-value"><span id="unicornsCreated">0</span>/<span id="unicornsNeeded">1</span></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">⚙️ Mode:</span>
+                    <span class="stat-value" id="difficultyDisplay">Easy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas for the game -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Hint text -->
+        <div class="hint">
+            💡 Click where you want the animal to land!
+        </div>
+
+        <!-- Evolution Sequence Button -->
+        <button id="sequenceBtn" class="sequence-btn">📖 Evolution Guide</button>
+    </div>
+
+    <!-- Game Over Modal (hidden by default) -->
+    <div id="gameOverModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>🌸 Game Over! 🌸</h2>
+            <p class="final-score">Final Score: <span id="finalScore">0</span></p>
+            <p class="highest-creature">Highest Creature: <span id="highestCreature">🐰</span></p>
+            <button id="restartBtn" class="restart-btn">🔄 Play Again</button>
+        </div>
+    </div>
+
+    <!-- Evolution Sequence Modal -->
+    <div id="sequenceModal" class="modal hidden">
+        <div class="modal-content sequence-content">
+            <h2>🌟 Evolution Sequence 🌟</h2>
+            <div class="evolution-chain">
+                <div class="evo-item">
+                    <span class="evo-emoji">🐌</span>
+                    <span class="evo-name">Snail</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🦋</span>
+                    <span class="evo-name">Butterfly</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🐰</span>
+                    <span class="evo-name">Bunny</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🐱</span>
+                    <span class="evo-name">Kitty</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🐶</span>
+                    <span class="evo-name">Puppy</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🦊</span>
+                    <span class="evo-name">Fox</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🐻</span>
+                    <span class="evo-name">Bear</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🦁</span>
+                    <span class="evo-name">Lion</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🐯</span>
+                    <span class="evo-name">Tiger</span>
+                </div>
+                <span class="evo-arrow">→</span>
+                <div class="evo-item">
+                    <span class="evo-emoji">🦄</span>
+                    <span class="evo-name">Unicorn</span>
+                </div>
+            </div>
+            <button id="closeSequenceBtn" class="restart-btn">✨ Close</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
